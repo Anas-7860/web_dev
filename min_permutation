@@ -1,0 +1,43 @@
+#include <iostream>
+#include <vector>//if want to use other than integer
+#include <algorithm>//if want to use other than integer
+
+using namespace std;
+// function for minimum permutation
+int minpermutation(int num){
+    //storing the digits in this vector var.
+    vector<int> digit;
+    while(num!=0){
+        digit.push_back(num%10);
+        num/=10;
+    }
+    sort(digit.begin(),digit.end());// default custom sorting in algorithm lib.
+    // code for avoiding 0 in the front
+    if(digit[0]==0)
+{
+    for(int i=1;i<digit.size();i++){
+        if(digit[i]!=0){
+            swap(digit[0],digit[i]);
+            break;
+        }
+        
+    }
+}    
+    int res=0;
+    for(int i:digit){
+        res = res*10 + i;
+    }
+    
+    
+    return res;
+    
+}
+int main() {
+  int num;
+  cout<<"enter the number :";
+  cin>>num;
+  int result = minpermutation(num);
+  cout<< result;
+
+    return 0;
+}
